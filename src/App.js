@@ -7,7 +7,7 @@ export default function App() {
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState([]);
   const [selectedcountry, setSelectedCountry] = useState("");
-  getCountries = async function () {
+  var getCountries = async function () {
     var response = await fetch(
       " https://crio-location-selector.onrender.com/countries"
     );
@@ -23,7 +23,7 @@ export default function App() {
     setSelectedCity("");
     await getStates(e.target.value);
   }
-  getStates = async function (country) {
+  var getStates = async function (country) {
     var response = await fetch(
       "https://crio-location-selector.onrender.com/country=" +
         country +
@@ -46,7 +46,7 @@ export default function App() {
     await getCites(e.target.value);
   }
 
-  getCites = async function (stateName) {
+  var getCites = async function (stateName) {
     var response = await fetch(
       "https://crio-location-selector.onrender.com/country=" +
         selectedcountry +
