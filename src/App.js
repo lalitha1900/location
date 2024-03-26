@@ -11,9 +11,11 @@ export default function App() {
     var response = await fetch(
       " https://crio-location-selector.onrender.com/countries"
     );
+    if(response.ok){
     var data = await response.json();
     setCountries(data);
     console.log(data);
+    }
   };
 
   async function onChangeCountry(e) {
@@ -21,6 +23,7 @@ export default function App() {
     setSelectedCountry(e.target.value);
     setSelectedState("");
     setSelectedCity("");
+    document.getElementById("textDisplay").style.display = "none";
     await getStates(e.target.value);
   }
   var getStates = async function (country) {
@@ -43,6 +46,7 @@ export default function App() {
     console.log("check");
     setSelectedState(e.target.value);
     setSelectedCity("");
+    document.getElementById("textDisplay").style.display = "none";
     await getCites(e.target.value);
   }
 
@@ -63,6 +67,10 @@ export default function App() {
       console.log(data);
     }
   };
+  function onChangeCity(value){
+    setSelectedCity(value);
+    document.getElementById("textDisplay").style.display = "block";
+  }
   useEffect(() => {
     getCountries();
   }, [selectedcountries]);
@@ -102,7 +110,7 @@ export default function App() {
         </select>
         <select
           value={selectedCity}
-          onChange={(e) => setSelectedCity(e.target.value)}
+          onChange={(e) => onChangeCity(e.target.value)}
           className="dropdown cityClass"
           disabled
         >
@@ -116,6 +124,7 @@ export default function App() {
           ))}
         </select>
       </div>
+      <div id="textDisplay" style={{display:'none'}}>You selected {selectedCity},{selectedState},{selectedcountry}</div>
     </div>
   );
 }
