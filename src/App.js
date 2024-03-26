@@ -124,7 +124,7 @@ export default function App() {
           ))}
         </select>
       </div>
-      <div id="textDisplay" style={{display:'none'}}>You selected {selectedCity},{selectedState},{selectedcountry}</div>
+      <div id="textDisplay" style={{display:'none'}}>You selected {selectedCity}, {selectedState}, {selectedcountry}</div>
     </div>
   );
 }
